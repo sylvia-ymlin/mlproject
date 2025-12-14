@@ -1,5 +1,6 @@
 import sys # manipulate Python runtime environment
-import logging
+# if we want to use our custom logger, we need to import logging from logger.py
+from src.logger import logging 
 
 def error_message_details(error, error_detail:sys):
     _, _, exc_tb = error_detail.exc_info() # unpack exception info, exc_tb is traceback object
