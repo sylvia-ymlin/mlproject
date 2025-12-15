@@ -39,7 +39,7 @@ class DataTransformation:
             # categorical pipeline
             cat_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy='most_frequent')),
-                ('one_hot_encoder', OneHotEncoder()),
+                ('one_hot_encoder', OneHotEncoder(handle_unknown='use_encoded_value', unknown_value=-1)),
                 ('scaler', StandardScaler(with_mean=False))
             ])
             logging.info("Numerical and categorical pipelines created")

@@ -27,10 +27,16 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, param):
 
         for i in range(len(models)):
             model = list(models.values())[i]
+
             para = param[list(models.keys())[i]]
 
+            # use GridSearchCV to find the best parameters
             gs = GridSearchCV(model, para, cv=3)
             gs.fit(X_train, y_train)
+
+            # or we can use randomized search, it will return the model with best parameters
+            # rs = RandomizedSearchCV(model, para, cv=3, n_iter=10, n_jobs=-1)
+            # rs.fit(X_train, y_train)
 
             model.set_params(**gs.best_params_)
             model.fit(X_train, y_train)
@@ -47,5 +53,12 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, param):
 
         return report
 
+    except Exception as e:
+        raise CustomException(e, sys)
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
     except Exception as e:
         raise CustomException(e, sys)

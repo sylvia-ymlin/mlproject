@@ -18,7 +18,7 @@ def error_message_details(error, error_detail:sys):
 
     return error_messgae
 
-def CustomException(Exception): # self define exception class, need to inherit from Exception class
+class CustomException(Exception): # self define exception class, need to inherit from Exception class
     def __init__(self, error_message, error_detail: sys):
         super().__init__(error_message) # call the constructor of the parent Exception class to initialize the exception with the provided error message
         # then we use our custom function to get detailed error message (original error message with file name and line number)
