@@ -2,3 +2,5 @@
 Fix the deployment issue
 
 try again
+
+add S3 policy
